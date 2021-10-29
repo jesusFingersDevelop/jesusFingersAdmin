@@ -3,7 +3,7 @@ import {Switch, Route, Redirect} from 'react-router-dom';
 import loadable from '@loadable/component'; // code spliting
 
 const App = () => {
-  return <div>코딩힘내라 최봉수....</div>;
+  return <div>어드민페이지 작업 시작</div>;
 };
 
 export default App;
