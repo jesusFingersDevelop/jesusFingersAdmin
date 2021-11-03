@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import moment from 'moment';
+import moment, {Moment, MonthWeekdayFn} from 'moment';
 
 const Calender = () => {
   const [getDate, setGetDate] = useState(moment());
@@ -7,6 +7,13 @@ const Calender = () => {
   const changeMonth = (calc: number) => {
     setGetDate(getDate.clone().add('months', calc));
   };
+  const reservedUserList = [
+    {providerId: 'provider', userName: '송영진', therapyDay: '2021-10-17'},
+    {providerId: 'provider', userName: '최봉수', therapyDay: '2021-11-17'},
+    {providerId: 'provider', userName: '최봉수2', therapyDay: '2021-11-17'},
+    {providerId: 'provider', userName: '유지민', therapyDay: '2021-11-02'},
+    {providerId: 'provider', userName: '황순범', therapyDay: '2021-11-24'},
+  ];
 
   const weekList = [
     {DayOfTheWeek: '일', color: 'red'},
@@ -26,23 +33,26 @@ const Calender = () => {
       Array(7)
         .fill(0)
         .map((data, index) => {
-          let days = getDate.clone().startOf('year').week(week).startOf('week').add(index, 'day');
+          let days: Moment = getDate.clone().startOf('year').week(week).startOf('week').add(index, 'day');
           return days;
         }),
     );
   }
+  const reservedUser = (daysItem: Moment) => {
+    const reservedUserName = reservedUserList.filter((item) => (item.therapyDay === daysItem.format('YYYY-MM-DD') ? item.userName : null));
+    reservedUserName.map((item) => item.userName);
+    console.log(reservedUserName.map((item) => item.userName));
+    return reservedUserName;
+  };
   return (
     <>
+      <input type="date" onChange={(e) => console.log(e.target.value)}></input>
       <div>
         <button onClick={() => changeMonth(-1)}>이전달</button>
         {getDate.format('YYYY 년 MM 월')}
         <button onClick={() => changeMonth(1)}>다음달</button>
       </div>
-      {thisMonthDays.map((n, i) => {
-        {
-          n;
-        }
-      })}
+
       <table>
         <thead>
           <tr>
@@ -57,7 +67,17 @@ const Calender = () => {
           {thisMonthDays.map((weekItem, weekIdx) => (
             <tr key={weekIdx}>
               {weekItem.map((daysItem, daysIdx) => (
-                <td key={weekIdx * 10 + daysIdx}>{daysItem.format('DD')}</td>
+                <td
+                  style={daysItem.format('MM') === getDate.format('MM') ? {backgroundColor: 'gray'} : {backgroundColor: 'red'}}
+                  key={weekIdx * 10 + daysIdx}
+                >
+                  {daysItem.format('DD')}
+                  <br />
+
+                  {reservedUser(daysItem).map((item, idx) => (
+                    <th key={idx}>{item.userName}</th>
+                  ))}
+                </td>
               ))}
             </tr>
           ))}
