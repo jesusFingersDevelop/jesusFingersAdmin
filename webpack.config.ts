@@ -2,14 +2,19 @@ import path from 'path';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import webpack, {Configuration as WebpackConfiguration} from 'webpack';
 import {Configuration as WebpackDevServerConfiguration} from 'webpack-dev-server';
-
+import dotenv from 'dotenv';
+import Dotenv from 'dotenv-webpack';
 interface Configuration extends WebpackConfiguration {
   devServer?: WebpackDevServerConfiguration;
 }
+dotenv.config();
 
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
+const webpackConfig = {
+  target: 'node',
+};
 
 const config: Configuration = {
   name: 'jesusfingers',
@@ -72,6 +77,10 @@ const config: Configuration = {
     ],
   },
   plugins: [
+    new Dotenv(),
+    new webpack.ProvidePlugin({
+      process: 'process/browser',
+    }),
     new ForkTsCheckerWebpackPlugin({
       async: false,
       // eslint: {
