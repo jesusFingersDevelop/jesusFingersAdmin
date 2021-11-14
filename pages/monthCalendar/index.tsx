@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import moment, {Moment} from 'moment';
 
-const Calender = () => {
+const MonthCalender = () => {
   const [getDate, setGetDate] = useState(moment());
 
   const changeMonth = (calc: number) => {
@@ -46,7 +46,6 @@ const Calender = () => {
   };
   return (
     <>
-      <input type="date" onChange={(e) => console.log(e.target.value)}></input>
       <div>
         <button onClick={() => changeMonth(-1)}>이전달</button>
         {getDate.format('YYYY 년 MM 월')}
@@ -87,4 +86,4 @@ const Calender = () => {
   );
 };
 
-export default Calender;
+export default MonthCalender;
