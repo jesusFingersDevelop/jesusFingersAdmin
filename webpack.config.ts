@@ -22,6 +22,7 @@ const config: Configuration = {
       '@components': path.resolve(__dirname, 'components'),
       '@layouts': path.resolve(__dirname, 'layouts'),
       '@pages': path.resolve(__dirname, 'pages'),
+      '@assets': path.resolve(__dirname, 'assets'),
     },
   },
   entry: {
@@ -29,6 +30,15 @@ const config: Configuration = {
   },
   module: {
     rules: [
+      {
+        test: /\.(png|jpe?g)$/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: '[path][name].[ext]',
+          },
+        },
+      },
       {
         test: /\.tsx?$/,
         loader: 'babel-loader',

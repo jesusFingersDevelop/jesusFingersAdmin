@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "typeRoots": ["src/types"],
     "esModuleInterop": true,
     "sourceMap": true,
     "lib": ["ES2020", "DOM"],
@@ -14,7 +15,8 @@
       "@hooks/*": ["hooks/*"],
       "@components/*": ["components/*"],
       "@layouts/*": ["layouts/*"],
-      "@pages/*": ["pages/*"]
+      "@pages/*": ["pages/*"],
+      "@assets/*": ["assets/*"],
     }
   }
 }

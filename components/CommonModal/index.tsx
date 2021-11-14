@@ -10,8 +10,9 @@ const CommonModal = ({setModal, innerContent}: Props) => {
   const [modalState, setModalState] = useState(false);
   return (
     <div className="commonModalWrapper">
-      <div className="commonModalOverlay" onClick={() => setModal(false)}>
-        <div className="commonModalContent">{innerContent}</div>
+      <div className="commonModalOverlay" onClick={() => setModal(false)} />
+      <div className="commonModalContent" onClick={() => setModal(true)}>
+        {innerContent}
       </div>
     </div>
   );

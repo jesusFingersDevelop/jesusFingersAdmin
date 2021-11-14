@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import './index.scss';
 import CommonModal from '@components/CommonModal';
+import KakaoLogin from '@components/KakaoLogin';
 
 interface IProps {}
 
@@ -8,16 +9,19 @@ const Login = () => {
   const [loginModal, setLoginModal] = useState<boolean>(false);
   return (
     <>
-      로그인
-      <CommonModal
-        setModal={setLoginModal}
-        innerContent={
-          <div className="loginModalWrapper">
-            로그인하기
-            <button>카캉</button>
-          </div>
-        }
-      ></CommonModal>
+      <div onClick={() => setLoginModal(true)}>로그인하러가기</div>
+      {loginModal ? (
+        <CommonModal
+          setModal={setLoginModal}
+          innerContent={
+            <div className="loginModalWrapper">
+              <div>jesusfinger</div>
+              <div>asdfasdfdsf</div>
+              <KakaoLogin />
+            </div>
+          }
+        />
+      ) : null}
     </>
   );
 };
