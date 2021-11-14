@@ -3,10 +3,8 @@ import './index.scss';
 import CommonModal from '@components/CommonModal';
 import KakaoLogin from '@components/KakaoLogin';
 
-interface IProps {}
-
 const Login = () => {
-  const [loginModal, setLoginModal] = useState<boolean>(false);
+  const [loginModal, setLoginModal] = useState<boolean>(true);
   return (
     <>
       <div onClick={() => setLoginModal(true)}>로그인하러가기</div>

@@ -5,7 +5,7 @@ const KakaoLogin = () => {
   const kakaoLoginHandler = () => {
     console.log('카카오로그인 api넣기');
   };
-  return <img src={kakaoLoginImage} onClick={kakaoLoginHandler} alt="카카오톡 로그인하기" />;
+  return <img style={{cursor: 'pointer'}} src={kakaoLoginImage} onClick={kakaoLoginHandler} alt="카카오톡 로그인하기" />;
 };
 
 export default KakaoLogin;

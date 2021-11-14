@@ -1,3 +1,13 @@
+button, input[type="submit"], input[type="reset"] {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
 .commonModalWrapper {
   position: fixed;
   width: 100%;
@@ -18,7 +28,7 @@
   width: 100%;
   height: 100%;
   background-color: #efefef;
-  opacity: 0.4;
+  opacity: 0.7;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -42,4 +52,14 @@
   @media screen and (max-width: 1000px) {
     width: 328px;
   }
+  button {
+    z-index: 41;
+    position: absolute;
+    top: 14vh;
+    right: 28vw;
+    @media screen and (max-width: 1000px) {
+      right: 80px;
+    }
+  }
 };
+
