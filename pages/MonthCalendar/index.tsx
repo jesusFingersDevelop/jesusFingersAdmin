@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import moment, {Moment} from 'moment';
+import {RouteComponentProps, useHistory, withRouter} from 'react-router-dom';
 
-const MonthCalender = () => {
+const MonthCalender = ({history}: RouteComponentProps) => {
   const [getDate, setGetDate] = useState(moment());
 
   const changeMonth = (calc: number) => {
@@ -44,6 +45,10 @@ const MonthCalender = () => {
     console.log(reservedUserName.map((item) => item.userName));
     return reservedUserName;
   };
+
+  const onSwitchDayCalendarHandler = (daysItem: any) => {
+    history.push('/day', {date: daysItem.format('dddd (d) DDD - D/MM/YY')});
+  };
   return (
     <>
       <div>
@@ -67,6 +72,7 @@ const MonthCalender = () => {
             <tr key={weekIdx}>
               {weekItem.map((daysItem, daysIdx) => (
                 <td
+                  onClick={(daysItem) => onSwitchDayCalendarHandler(daysItem)}
                   style={daysItem.format('MM') === getDate.format('MM') ? {backgroundColor: 'gray'} : {backgroundColor: 'red'}}
                   key={weekIdx * 10 + daysIdx}
                 >
@@ -86,4 +92,4 @@ const MonthCalender = () => {
   );
 };
 
-export default MonthCalender;
+export default withRouter(MonthCalender);
