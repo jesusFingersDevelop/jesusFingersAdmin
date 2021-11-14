@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import moment, {Moment, MonthWeekdayFn} from 'moment';
+import React, {useState} from 'react';
+import moment, {Moment} from 'moment';
 
 const Calender = () => {
   const [getDate, setGetDate] = useState(moment());

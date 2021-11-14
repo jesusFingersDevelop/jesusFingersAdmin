@@ -56,6 +56,19 @@ const config: Configuration = {
         test: /\.css?$/,
         use: ['style-loader', 'css-loader'],
       },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              implementation: require('sass'),
+            },
+          },
+        ],
+      },
     ],
   },
   plugins: [
@@ -74,7 +87,7 @@ const config: Configuration = {
   },
   devServer: {
     historyApiFallback: true,
-    port: 3090,
+    port: 3000,
     devMiddleware: {publicPath: '/dist/'},
     static: {directory: path.resolve(__dirname)},
   },

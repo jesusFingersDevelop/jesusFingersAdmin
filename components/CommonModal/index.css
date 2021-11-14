@@ -1,0 +1,48 @@
+.commonModalWrapper {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 21;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.commonModalOverlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #efefef;
+  opacity: 0.4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.commonModalContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, 0.2);
+  background-color: white;
+  width: 50vw;
+  height: 80vh;
+  overflow-y: auto;
+}
+.commonModalContent::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari, Opera*/
+}
+@media screen and (max-width: 1000px) {
+  .commonModalContent {
+    width: 328px;
+  }
+}
+
+/*# sourceMappingURL=index.css.map */
