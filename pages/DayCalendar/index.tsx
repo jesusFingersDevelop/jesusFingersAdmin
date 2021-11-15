@@ -1,18 +1,23 @@
 import React, {useState, useEffect} from 'react';
 import {useLocation} from 'react-router';
+import Header from '@components/Header';
 import moment from 'moment';
+import CommonModal from '@components/CommonModal';
+
+import './index.scss';
 
 const DayCalendar = () => {
   const location = useLocation();
   const initialDate = location.state || moment().format('YYYY-MM-DD');
   const [getDate, setGetDate] = useState<any>(initialDate);
+  const [onCreateModal, setOnCreateModal] = useState(false);
 
   const reservedUserList = [
-    {providerId: 'provider', userName: '송영진', therapyDay: '2021-11-15', therapyTime: '11:30'},
-    {providerId: 'provider', userName: '최봉수', therapyDay: '2021-11-16', therapyTime: '12:30'},
-    {providerId: 'provider', userName: '최봉수2', therapyDay: '2021-11-17', therapyTime: '13:00'},
-    {providerId: 'provider', userName: '유지민', therapyDay: '2021-11-18', therapyTime: '14:30'},
-    {providerId: 'provider', userName: '황순범', therapyDay: '2021-11-19', therapyTime: '18:30'},
+    {providerId: 'provider', userName: '송영진', therapyDay: '2021-10-17', therapyTime: '11:30'},
+    {providerId: 'provider', userName: '최봉수', therapyDay: '2021-11-17', therapyTime: '14:30'},
+    {providerId: 'provider', userName: '최봉수2', therapyDay: '2021-11-17', therapyTime: '15:30'},
+    {providerId: 'provider', userName: '유지민', therapyDay: '2021-11-02', therapyTime: '16:30'},
+    {providerId: 'provider', userName: '황순범', therapyDay: '2021-11-24', therapyTime: '10:00'},
   ];
 
   const reservedUser = (reservedTime: string) => {
@@ -46,17 +51,31 @@ const DayCalendar = () => {
     '19:30',
     '20:00',
   ];
-  const changeDay = (calc: number) => {
+
+  const changeDayHendler = (calc: number) => {
     setGetDate(moment(getDate).add(calc, 'days').format('YYYY-MM-DD'));
   };
 
+  const createTherapySchduleModal = (
+    <CommonModal
+      setModal={setOnCreateModal}
+      innerContent={
+        <form>
+          <input type="time" step="1800" onChange={(e) => console.log(e.target.value)} />
+          <input type="submit" />
+        </form>
+      }
+    />
+  );
+
   return (
     <>
-      <div>
+      <Header />
+      <div className="dayCalendarWrapper">
         <div>
-          <button onClick={() => changeDay(-1)}>이전일</button>
+          <button onClick={() => changeDayHendler(-1)}>이전일</button>
           {getDate}
-          <button onClick={() => changeDay(1)}>다음날</button>
+          <button onClick={() => changeDayHendler(1)}>다음날</button>
         </div>
         <tr>
           <th>시간</th>
@@ -70,6 +89,14 @@ const DayCalendar = () => {
             ))}
           </tr>
         ))}
+        <div
+          onClick={() => {
+            setOnCreateModal(true);
+          }}
+        >
+          일정추가하기
+        </div>
+        {onCreateModal ? createTherapySchduleModal : null}
       </div>
     </>
   );
