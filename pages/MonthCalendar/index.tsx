@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import moment, {Moment} from 'moment';
-import {RouteComponentProps, useHistory, withRouter} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 
-const MonthCalender = ({history}: RouteComponentProps) => {
+const MonthCalender = () => {
   const [getDate, setGetDate] = useState(moment());
 
   const changeMonth = (calc: number) => {
@@ -25,10 +25,12 @@ const MonthCalender = ({history}: RouteComponentProps) => {
     {DayOfTheWeek: '금', color: 'black'},
     {DayOfTheWeek: '토', color: 'blue'},
   ];
+
   const thisMonthDays = [];
   const firstWeek = getDate.clone().startOf('month').week();
   const lastWeek = getDate.clone().endOf('month').week() === 1 ? 53 : getDate.clone().endOf('month').week();
   let week = firstWeek;
+
   for (week; week <= lastWeek; week++) {
     thisMonthDays.push(
       Array(7)
@@ -40,14 +42,12 @@ const MonthCalender = ({history}: RouteComponentProps) => {
     );
   }
   const reservedUser = (daysItem: Moment) => {
-    const reservedUserName = reservedUserList.filter((item) => (item.therapyDay === daysItem.format('YYYY-MM-DD') ? item.userName : null));
-    reservedUserName.map((item) => item.userName);
-    console.log(reservedUserName.map((item) => item.userName));
-    return reservedUserName;
+    return reservedUserList.filter((item) => (item.therapyDay === daysItem.format('YYYY-MM-DD') ? item.userName : null));
   };
 
+  const history = useHistory();
   const onSwitchDayCalendarHandler = (daysItem: any) => {
-    history.push('/day', {date: daysItem.format('dddd (d) DDD - D/MM/YY')});
+    history.push('/day', daysItem.format('YYYY-MM-DD'));
   };
   return (
     <>
@@ -72,7 +72,7 @@ const MonthCalender = ({history}: RouteComponentProps) => {
             <tr key={weekIdx}>
               {weekItem.map((daysItem, daysIdx) => (
                 <td
-                  onClick={(daysItem) => onSwitchDayCalendarHandler(daysItem)}
+                  onClick={() => onSwitchDayCalendarHandler(daysItem)}
                   style={daysItem.format('MM') === getDate.format('MM') ? {backgroundColor: 'gray'} : {backgroundColor: 'red'}}
                   key={weekIdx * 10 + daysIdx}
                 >
@@ -92,4 +92,4 @@ const MonthCalender = ({history}: RouteComponentProps) => {
   );
 };
 
-export default withRouter(MonthCalender);
+export default MonthCalender;

@@ -11,6 +11,7 @@
     "strict": true,
     "resolveJsonModule": true,
     "baseUrl": ".",
+    "useUnknownInCatchVariables": false,
     "paths": {
       "@hooks/*": ["hooks/*"],
       "@components/*": ["components/*"],
