@@ -3,9 +3,12 @@ import './index.scss';
 import CommonModal from '@components/CommonModal';
 import KakaoLogin from '@components/KakaoLogin';
 import Header from '@components/Header';
+import {useHistory} from 'react-router';
 
 const Login = () => {
   const [onLoginModal, setOnLoginModal] = useState<boolean>(false);
+  const history = useHistory();
+
   const loginModal = (
     <CommonModal
       setModal={setOnLoginModal}
@@ -19,9 +22,14 @@ const Login = () => {
     />
   );
 
+  const moveToMonth = () => {
+    history.push('./month');
+  };
+
   return (
     <>
       <Header />
+      <div onClick={() => moveToMonth()}>캘린더 보러가기</div>
       <div onClick={() => setOnLoginModal(true)}>로그인하러가기</div>
       {onLoginModal ? loginModal : null}
     </>
