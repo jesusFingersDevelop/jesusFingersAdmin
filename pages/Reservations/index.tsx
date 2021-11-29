@@ -6,7 +6,7 @@ const Reservations = () => {
   return (
     <>
       <Header />
-      <div>reservaasdfasdtion</div>
+      <div>asdfasdf</div>
     </>
   );
 };

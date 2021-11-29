@@ -1,11 +1,11 @@
 {
   "name": "JesusFingersAdmin",
   "version": "1.0.0",
-  "description": "initial format for react with typescript",
+  "description": "jesusfingersAdminPage",
   "main": "index.js",
   "scripts": {
     "start": "cross-env TS_NODE_PROJECT=\"tsconfig-for-webpack-config.json\" webpack serve --env development",
-    "build": "cross-env TS_NODE_PROJECT=\"tsconfig-for-webpack-config.json\"webpack",
+    "build": "cross-env NODE_ENV=production TS_NODE_PROJECT=\"tsconfig-for-webpack-config.json\" webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "11t518s",
